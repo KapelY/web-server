@@ -14,7 +14,6 @@ public class Server {
         Server server = new Server();
         server.port = 3000;
         server.staticResourcesPath = "src/main/resources/webapp";
-
         server.start();
     }
 
