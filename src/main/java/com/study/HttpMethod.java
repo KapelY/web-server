@@ -1,5 +1,13 @@
 package com.study;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+
+@AllArgsConstructor
+@Getter
 public enum HttpMethod {
-    GET, PUT, POST, DELETE, PATCH, HEAD, TRACE, CONNECT, OPTIONS
+    GET("get"), PUT("put"), POST("post"), DELETE("delete");
+
+    private final String name;
 }

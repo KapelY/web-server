@@ -1,13 +1,14 @@
 package com.study;
 
-import lombok.Value;
+import lombok.Data;
 
 import java.util.Map;
 
 
-@Value
+@Data
 public class Request {
     public String uri;
     public Map<String, String> headers;
     public HttpMethod method;
+    public String body;
 }

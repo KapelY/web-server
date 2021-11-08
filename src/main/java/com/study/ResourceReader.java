@@ -1,22 +1,19 @@
 package com.study;
 
-import lombok.AllArgsConstructor;
-
 import java.io.*;
 
-@AllArgsConstructor
 public class ResourceReader {
-    private static final String EXCEPTION_IN_STREAM = "Something went wrong in 'readContent(String uri)')!";
-    public String staticResourcesPath;
+    static final String EXCEPTION_IN_STREAM = "Something went wrong in 'readContent(String uri)')!";
 
-    public String readContent(String uri) {
+    public static String readContent(String staticResourcesPath, String uri) {
         String path = staticResourcesPath + uri;
+        System.out.println("content path ->" + path);
         if (new File(path).exists()) {
-            try (var bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(path)))) {
+            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
                 String line;
                 StringBuilder stringBuilder = new StringBuilder();
-                while (!(line = bufferedReader.readLine()).isEmpty()) {
-                   stringBuilder.append(line);
+                while ((line = bufferedReader.readLine()) != null) {
+                   stringBuilder.append(line).append(System.lineSeparator());
                 }
                 return stringBuilder.toString();
             } catch (IOException e) {

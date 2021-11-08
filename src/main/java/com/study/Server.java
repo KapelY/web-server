@@ -14,6 +14,7 @@ public class Server {
         Server server = new Server();
         server.port = 3000;
         server.staticResourcesPath = "src/main/resources/webapp";
+
         server.start();
     }
 
@@ -26,9 +27,10 @@ public class Server {
             while (true) {
                 try (Socket socket = serverSocket.accept();
                      BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
+                     BufferedOutputStream writer = new BufferedOutputStream(socket.getOutputStream())) {
 
                     RequestHandler handler = new RequestHandler(reader, writer, staticResourcesPath);
+                    System.out.println("======In handle++++++++++");
                     handler.handle();
                 }
             }
